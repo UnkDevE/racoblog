@@ -24,7 +24,7 @@
 (define (root . items) 
     (map (lambda (elem)
             (let ([takefront (filter (not string?) elem)]
-                   [texts (map (lambda (e) (txexpr 'text '(class "text") e))
+                   [texts (map (lambda (e) (txexpr 'div '(class "text") e))
                         (filter (string?) elem))]) 
                 (interpolate texts takefront)))
         (decode (txexpr 'root '() items)
@@ -35,10 +35,6 @@
 
 (define-tag-function (snippet attrib elems)
     (`'div ,((class "snippet") ~a attrib) ,elems)
-)
-
-(define-tag-function (text attrib elems)
-    (`'div ,((class "text") ~a attrib) ,elems)
 )
 
 (define-tag-function (takeover attrib elems)
