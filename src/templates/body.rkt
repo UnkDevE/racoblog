@@ -1,6 +1,7 @@
 #lang racket
 (require pollen/core)
 (require pollen/decode)
+(require pollen/tag)
 (require txexpr)
 
 (define (interpolate-r xxs xs ys)
@@ -30,4 +31,16 @@
             #:txexpr-elements-proc decode-paragraphs
         )
     )
+)
+
+(define-tag-function (snippet attrib elems)
+    (`'div ,((class "snippet") ~a attrib) ,elems)
+)
+
+(define-tag-function (text attrib elems)
+    (`'div ,((class "text") ~a attrib) ,elems)
+)
+
+(define-tag-function (takeover attrib elems)
+    (`'div ,((class "takeover") ~a attrib) ,elems)
 )
