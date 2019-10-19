@@ -25,6 +25,13 @@
             }
         </div> 
         <div class="body">◊|(->html)|</div>
+        <script src="https://utteranc.es/client.js"
+            repo="unkdeve.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
         <div class="navi">
             <a class="trangle-up" href="#top"></a>
             ◊when/splice[(previous here)]{
