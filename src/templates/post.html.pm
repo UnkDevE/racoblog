@@ -2,7 +2,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>◊(select 'title doc)</title>
+
+    <link rel="stylesheet" href="./highlight/styles/default.css">
+    <script src="./highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-4zys9A4hMQmtq2EUL+JRoXc0NZi8jVJMzb8onewOaSQ=" crossorigin="anonymous"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+    </script>
+
+    <link rel="stylesheet" href="./post.css">
+    <title>◊(select 'title doc)</title.>
 </head>
     <body>
         <a name="top"></a>

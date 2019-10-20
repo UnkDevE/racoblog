@@ -1,8 +1,12 @@
 #lang racket
+(require racket/base)
+(require racket/list)
 (require pollen/core)
 (require pollen/decode)
 (require pollen/tag)
 (require txexpr)
+
+(provide root snippet code takeover)
 
 (define (search-replace xs ys pred?)
    (search-replace 
@@ -17,7 +21,7 @@
 (define (root . items) 
     (map (lambda (elem)
             (let ([takefront (filter (not string?) elem)]
-                   [texts (map (lambda (e) (txexpr 'div '(class "text") e))
+                   [texts (map (lambda (e) (txexpr '(div (class "text") e)))
                         (filter (string?) elem))]) 
                 (search-replace (search-replace elem texts)) takefront))
         (decode (txexpr 'root '() items)
@@ -27,9 +31,22 @@
 )
 
 (define-tag-function (snippet attrib elems)
-    `('div ,((class "snippet") ~a attrib) ,elems)
+    `(div ,((class "snippet") ~a attrib) ,elems)
+)
+
+(define-tag-function (code attrib elems)
+    '(pre '() `(code ,attrib ,elems))
 )
 
 (define-tag-function (takeover attrib elems)
-    `('div ,((class "takeover") ~a attrib) ,elems)
+    `(div ,((class "takeover") ~a attrib) ,elems)
 )
+
+(define-tag-function (math _ xs)
+  `(mathjax () ,(apply string-append `("$" ,@xs "$")))
+)
+
+(define-tag-function (math-block _ xs)
+  `(mathjax () ,(apply string-append `("$$" ,@xs "$$")))
+)
+
